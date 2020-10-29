@@ -2,6 +2,8 @@
 #include <vector>
 #include <chrono>
 
+#include "cell.h"
+
 template <class T>
 class heap{
 private:
@@ -109,23 +111,27 @@ public:
 	T remove_min(){
 		
 		T minimum;
+		T temp;
 		
 		if(size < 1){
 			std::cout << "No elements on the heap" << std::endl;
 		}
 		else{
-			minimum = heap_vector[0];
-			
+			temp = heap_vector[0];
 			// Swap the root element with the last 
 			heap_vector[0] = heap_vector[size - 1];
 			
+			heap_vector[size -1] = temp;
 			// Decrease the size
 			size -= 1;
 			
 			maintain_min_heap(0);
+			
+			//minimum = heap_vector[size];
+			
 		}
 		
-		return minimum;
+		return temp;
 	}
 	
 	void print_heap(){
@@ -134,6 +140,7 @@ public:
 		}
 		std::cout << std::endl;
 	}
+
 };
 
 
@@ -166,7 +173,6 @@ int main(int argc, char *argv[]){
 
 	heap<int> kasa;
 	kasa.add(6);
-	int kuusi = kasa.remove_min();
 	kasa.print_heap();
 	kasa.add(9);
 	kasa.print_heap();
@@ -200,7 +206,6 @@ int main(int argc, char *argv[]){
 		std::cout << kasa.remove_min() << std::endl;
 	}
 	
-	std::cout << "Variable kuusi contains: " << kuusi << std::endl;
 	
 	
 	int array_size = 1000;
@@ -245,6 +250,29 @@ int main(int argc, char *argv[]){
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( end - start);
 	std::cout << "Duration: " << duration.count() << "ms" << std::endl;
 	
+	
+	cell nolla(0,0,0);
+	cell yksi(1,1,1);
+	cell kaksi(2,2,2);
+	cell kolme(3,3,3);
+	cell nelja(4,4,4);
+	cell viisi(5,5,5);
+	cell kuusi(6,6,6);
+	
+	heap<cell> cell_heap;
+	cell_heap.add(viisi);
+	cell_heap.add(kolme);
+	cell_heap.add(nelja);
+	cell_heap.add(yksi);
+	cell_heap.add(nolla);
+	cell_heap.add(kaksi);
+	
+	std::cout << cell_heap.get_size() << std::endl;
+	
+	for(int i = 0; i < 7; i++){
+		//cell c = cell_heap.remove_min();
+		//c.print();
+	}
 	
 }
 
