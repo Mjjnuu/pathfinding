@@ -1,6 +1,8 @@
 #include "cell.h"
 #include <cmath>
 
+cell::cell(){}
+
 cell::cell(int x, int y){
 	coordinates[0] = x;
 	coordinates[1] = y;

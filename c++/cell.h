@@ -12,6 +12,7 @@ private:
 	double distance;
 
 public:
+	cell();
 	cell(int x, int y);
 	cell(int x, int y, double dist);
 	cell(int new_coordinates[]);

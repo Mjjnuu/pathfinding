@@ -258,8 +258,9 @@ int main(int argc, char *argv[]){
 	cell nelja(4,4,4);
 	cell viisi(5,5,5);
 	cell kuusi(6,6,6);
-	
+
 	heap<cell> cell_heap;
+	cell_heap.add(kuusi);
 	cell_heap.add(viisi);
 	cell_heap.add(kolme);
 	cell_heap.add(nelja);
@@ -267,13 +268,40 @@ int main(int argc, char *argv[]){
 	cell_heap.add(nolla);
 	cell_heap.add(kaksi);
 	
+	
 	std::cout << cell_heap.get_size() << std::endl;
 	
 	for(int i = 0; i < 7; i++){
-		//cell c = cell_heap.remove_min();
-		//c.print();
+		cell* c = cell_heap.get_min();
+		c->print();
+		cell_heap.remove_min();
 	}
 	
+	int heap_size = 1000;
+	int sequence[heap_size];
+	for(int i = 0; i < heap_size; i++){
+		sequence[i] = i;
+	}
+	FY_suffle(sequence, heap_size);
+	
+	
+	auto start2 = std::chrono::high_resolution_clock::now();//////////////
+	
+	heap<cell> CH;
+	for(int i = 0; i < heap_size; i++){
+		int j = sequence[i];
+		CH.add(cell(j,j,j));
+	}
+	
+	for(int i = 0; i < heap_size; i++){
+		cell* c = CH.get_min();
+		c->print();
+		CH.remove_min();
+	}
+	
+	auto end2 = std::chrono::high_resolution_clock::now();
+	auto duration2 = std::chrono::duration_cast<std::chrono::milliseconds>( end2 - start2);
+	std::cout << "Duration: " << duration2.count() << "ms" << std::endl;
 }
 
 

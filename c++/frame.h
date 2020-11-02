@@ -9,6 +9,7 @@ private:
 	int grid_width;
 	int grid_height;
 	
+	char* grid;
 
 	
 public:
@@ -19,6 +20,10 @@ public:
 	int get_width();
 	
 	int get_height();
+	
+	void randomize(int percentage);
+	
+	char get(int i, int j);
 
 
 };
@@ -41,6 +46,10 @@ public:
 	~Frame();
 	
 	void draw_cell(int i, int j, int r, int g, int b, int a);
+	
+	void draw_grid(Grid &grid);
+	
+	void present();
 };
 
 
