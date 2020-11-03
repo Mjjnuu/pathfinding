@@ -23,7 +23,11 @@ public:
 	
 	void randomize(int percentage);
 	
+	void set_cell(int i, int j, char value);
+	
 	char get(int i, int j);
+	
+	bool is_valid(int i, int j);
 
 
 };

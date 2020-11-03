@@ -10,6 +10,15 @@ Grid::Grid(int width, int height){
 		
 	grid_width = width;
 	grid_height = height;
+	
+	grid = new char[grid_height * grid_width];
+	for(int i = 0; i < grid_height; i++){
+		for(int j = 0; j < grid_width; j++){
+			
+			grid[i * grid_width + j] = 0;
+			
+		}
+	}
 }
 	
 Grid::~Grid(){
@@ -37,8 +46,22 @@ void Grid::randomize(int percentage){
 	}
 }
 
+
+void Grid::set_cell(int i, int j, char value){
+	grid[i * grid_width + j] = value;
+}
+
 char Grid::get(int i, int j){
 	return grid[i * grid_width + j];
+}
+
+
+bool Grid::is_valid(int i, int j){
+	return (0 <= i && i < grid_height && 
+	    	0 <= j && j < grid_width && 
+	    	grid[i * grid_width + j] != 1 &&
+	    	grid[i * grid_width + j] != 3);
+
 }
 
 

@@ -144,7 +144,7 @@ public:
 };
 
 
-
+/*
 // Fischer-Yates algorithm for permuting an array
 void FY_suffle(int array[], int length){
 	for(int i = length - 1; i>0; i--){
@@ -166,9 +166,9 @@ void print_array(int array[], int length){
 	}
 	std::cout << std::endl;
 }
+*/
 
-
-
+/*
 int main(int argc, char *argv[]){
 
 	heap<int> kasa;
@@ -223,24 +223,12 @@ int main(int argc, char *argv[]){
 		
 		FY_suffle(array, array_size);
 		
-		/*
-		for(int i=0; i<array_size; i++){
-			std::cout << array[i] << ' ';
-		}
-		std::cout << std::endl;
-		*/
 		
 		//merge_sort(array, 0, size-1);
 		for(int i=0; i < array_size; i++){
 			Heap.add(array[i]);
 		}
 		
-		/*
-		for(int i = 0; i< array_size; i++){
-			std::cout << Heap.remove_min() << ' ';
-		}
-		std::cout << std::endl;
-		*/
 		
 		//std::cout << Heap.get_size() << std::endl;
 		
@@ -304,7 +292,7 @@ int main(int argc, char *argv[]){
 	std::cout << "Duration: " << duration2.count() << "ms" << std::endl;
 }
 
-
+*/
 
 
 

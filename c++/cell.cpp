@@ -3,14 +3,14 @@
 
 cell::cell(){}
 
-cell::cell(int x, int y){
-	coordinates[0] = x;
-	coordinates[1] = y;
+cell::cell(int y, int x){
+	coordinates[0] = y;
+	coordinates[1] = x;
 }
 
-cell::cell(int x, int y, double dist){
-	coordinates[0] = x;
-	coordinates[1] = y;
+cell::cell(int y, int x, double dist){
+	coordinates[0] = y;
+	coordinates[1] = x;
 	distance = dist;
 }
 
@@ -26,11 +26,11 @@ cell::cell(int new_coordinates[], double dist){
 }
 
 int cell::get_x(){
-	return coordinates[0];
+	return coordinates[1];
 }
 
 int cell::get_y(){
-	return coordinates[1];
+	return coordinates[0];
 }
 
 void cell::get_coordinates(int array[]){
