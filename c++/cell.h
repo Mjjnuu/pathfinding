@@ -34,6 +34,7 @@ public:
 	
 	bool operator < (const cell& target);
 	bool operator > (const cell& target);
+	bool operator == (const cell& target);
 	
 	void print(){
 		std::cout << '[' << coordinates[0] << " , " << coordinates[1] << "] , " << distance << std::endl;

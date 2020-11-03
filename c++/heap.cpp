@@ -2,7 +2,7 @@
 #include <vector>
 #include <chrono>
 
-#include "cell.h"
+//#include "cell.h"
 
 template <class T>
 class heap{
@@ -132,6 +132,16 @@ public:
 		}
 		
 		return temp;
+	}
+	
+	
+	int search(T & key){
+		for (int i = 0; i < size; i++){
+			if(heap_vector[i] == key){
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	void print_heap(){

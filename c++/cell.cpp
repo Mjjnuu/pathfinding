@@ -59,6 +59,10 @@ bool cell::operator > (const cell& target){
 	return distance > target.distance;
 }
 
+bool cell::operator == (const cell& target){
+	return(coordinates[0] == target.coordinates[0] && coordinates[1] == target.coordinates[1]);
+}
+
 
 
 

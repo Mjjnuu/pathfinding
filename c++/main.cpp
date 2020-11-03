@@ -9,6 +9,24 @@
 
 int main(int argc, char *argv[]){
 
+	heap<cell> h;
+	cell c1(1,1,1.0);
+	cell c2(1,2,2.0);
+	cell c3(2,2,3.0);
+	cell c4(3,2,4.0);
+	h.add(c2);
+	h.add(c4);
+	h.add(c1);
+	h.add(c3);
+	
+	
+	std::cout << "index of c1: " << h.search(c1) << std::endl;
+	std::cout << "index of c2: " << h.search(c2) << std::endl;
+	std::cout << "index of c3: " << h.search(c3) << std::endl;
+	std::cout << "index of c4: " << h.search(c4) << std::endl;
+
+	srand(time(NULL));
+	
 	int width = 120;
 	int height = 80;
 	
@@ -31,10 +49,8 @@ int main(int argc, char *argv[]){
 	
 	SDL_Event event;
 	
-	srand(time(NULL));
-	
 	int counter = 0;
-	int heap_number = 1;
+
 	int i = start_coordinates[0];
 	int j = start_coordinates[1];
 	
@@ -49,7 +65,6 @@ int main(int argc, char *argv[]){
 		// Business-logic of the dijkstra-algorithm
 		cell* current_cell = cell_heap.get_min();
 		cell_heap.remove_min();
-		heap_number -= 1;
 		double current_dist = current_cell->get_distance();
 		
 		
@@ -66,48 +81,56 @@ int main(int argc, char *argv[]){
 		gr.set_cell(i, j, 3);
 		frame.draw_cell(i, j, 255,0,0,0);
 		
+		
 		if(gr.is_valid(i-1, j)){
+			cell new_cell(i-1, j, current_dist + 1);
+			int index = cell_heap.search(new_cell);
+			std::cout << "index: " << index << std::endl;
+			
 			// Check if the cell at i-1, j is in the cell_heap, add it if not
 			if(gr.get(i-1,j) != 2){
-				cell new_cell(i-1, j, current_dist + 1);
 				cell_heap.add(new_cell);
-				heap_number += 1;
 				gr.set_cell(i-1,j,2);
 				frame.draw_cell(i-1, j, 0,255,0,0);
 			}	
 		}
 		if(gr.is_valid(i+1, j)){
+			cell new_cell(i+1, j, current_dist + 1);
+			int index = cell_heap.search(new_cell);
+			std::cout << "index: " << index << std::endl;
+			
 			// Check if the cell at i-1, j is in the cell_heap, add it if not
 			if(gr.get(i+1,j) != 2){
-				cell new_cell(i+1, j, current_dist + 1);
 				cell_heap.add(new_cell);
-				heap_number += 1;
 				gr.set_cell(i+1,j,2);
 				frame.draw_cell(i+1, j, 0,255,0,0);
 			}	
 		}
 		if(gr.is_valid(i, j-1)){
+			cell new_cell(i, j-1, current_dist + 1);
+			int index = cell_heap.search(new_cell);
+			std::cout << "index: " << index << std::endl;
+			
 			// Check if the cell at i-1, j is in the cell_heap, add it if not
 			if(gr.get(i,j-1) != 2){
-				cell new_cell(i, j-1, current_dist + 1);
 				cell_heap.add(new_cell);
-				heap_number += 1;
 				gr.set_cell(i,j-1,2);
 				frame.draw_cell(i, j-1, 0,255,0,0);
 			}	
 		}
 		if(gr.is_valid(i, j+1)){
+			cell new_cell(i, j+1, current_dist + 1);
+			int index = cell_heap.search(new_cell);
+			std::cout << "index: " << index << std::endl;
+			
 			// Check if the cell at i-1, j is in the cell_heap, add it if not
 			if(gr.get(i,j+1) != 2){
-				cell new_cell(i, j+1, current_dist + 1);
 				cell_heap.add(new_cell);
-				heap_number += 1;
 				gr.set_cell(i,j+1,2);
 				frame.draw_cell(i, j+1, 0,255,0,0);
 			}	
 		}
 		
-		//std::cout << cell_heap.get_size() - heap_number << std::endl;
 		
 		//frame.draw_grid(gr);
 		frame.present();
