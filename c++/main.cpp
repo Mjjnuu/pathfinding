@@ -6,10 +6,11 @@
 #include "cell.h"
 #include "heap.cpp"
 
-void updateCell(int i, int j, cell &current_cell, heap<cell> &cell_heap, Grid &grid, Frame &frame){
+void updateCell(int i, int j, cell* current_cell, heap<cell> &cell_heap, Grid &grid, Frame &frame){
 	if(grid.is_valid(i,j)){
-		double distance = current_cell.get_distance();
+		double distance = current_cell->get_distance();
 		cell new_cell(i, j, distance + 1);
+		new_cell.set_predecessor(current_cell->get_y(), current_cell->get_x());
 		// cell.set_predecessor
 		
 		// If new_cell is not in the heap add it
@@ -102,7 +103,12 @@ int main(int argc, char *argv[]){
 		gr.set_cell(i, j, 3);
 		frame.draw_cell(i, j, 255,0,0,255);
 		
+		updateCell(i-1, j, current_cell, cell_heap, gr, frame);
+		updateCell(i+1, j, current_cell, cell_heap, gr, frame);
+		updateCell(i, j-1, current_cell, cell_heap, gr, frame);
+		updateCell(i, j+1, current_cell, cell_heap, gr, frame);
 		
+		/*
 		if(gr.is_valid(i-1, j)){
 			cell new_cell(i-1, j, current_dist + 1);
 			int index = cell_heap.search(new_cell);
@@ -151,7 +157,7 @@ int main(int argc, char *argv[]){
 				frame.draw_cell(i, j+1, 0,255,0,0);
 			}	
 		}
-		
+		*/
 		
 		//frame.draw_grid(gr);
 		frame.present();

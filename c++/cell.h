@@ -31,6 +31,7 @@ public:
 	void set_distance(double dist);
 	
 	void set_coordinates(int new_coordinates[]);
+	void set_predecessor(int i, int j);
 	
 	bool operator < (const cell& target);
 	bool operator > (const cell& target);

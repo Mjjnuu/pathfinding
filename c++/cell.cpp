@@ -51,6 +51,11 @@ double cell::get_distance(){
 }
 
 
+void cell::set_predecessor(int i, int j){
+	predecessor[0] = i;
+	predecessor[1] = j;
+}
+
 bool cell::operator < (const cell& target){
 	return distance < target.distance;
 }
