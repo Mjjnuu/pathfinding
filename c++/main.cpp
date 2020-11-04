@@ -6,6 +6,27 @@
 #include "cell.h"
 #include "heap.cpp"
 
+void updateCell(int i, int j, cell &current_cell, heap<cell> &cell_heap, Grid &grid, Frame &frame){
+	if(grid.is_valid(i,j)){
+		double distance = current_cell.get_distance();
+		cell new_cell(i, j, distance + 1);
+		// cell.set_predecessor
+		
+		// If new_cell is not in the heap add it
+		if(grid.get(i,j) != 2){
+			cell_heap.add(new_cell);
+			grid.set_cell(i, j, 2);
+			frame.draw_cell(i, j, 0, 255, 0, 0);
+		}// Otherwise update the cell in the heap
+		else{
+			int index = cell_heap.search(new_cell);
+			
+			// if(distance + 1 < )
+			
+			cell_heap.decrease_priority(index, new_cell);
+		}
+	}
+}
 
 int main(int argc, char *argv[]){
 
@@ -79,7 +100,7 @@ int main(int argc, char *argv[]){
 		
 		// The current cell has been checked, so change the value to 3
 		gr.set_cell(i, j, 3);
-		frame.draw_cell(i, j, 255,0,0,0);
+		frame.draw_cell(i, j, 255,0,0,255);
 		
 		
 		if(gr.is_valid(i-1, j)){
