@@ -26,6 +26,10 @@ public:
 		return &heap_vector;
 	}
 	
+	T* get(int index){
+		return &(heap_vector[index]);
+	}
+	
 	static int get_parent(int index){
 		return (index - 1) / 2;
 	}
@@ -147,8 +151,20 @@ public:
 	void print_heap(){
 		for(int i = 0; i < size; i++){
 			std::cout << heap_vector[i] << ' ';
+			//print(heap_vector[i]);
 		}
 		std::cout << std::endl;
+	}
+	
+	bool contains_duplicates(){
+		for(int i = 0; i < size -1; i++){
+			for(int j = i + 1; j < size; j++){
+				if(heap_vector[i] == heap_vector[j]){
+					return 1;
+				}
+			}
+		}
+		return 0;
 	}
 
 };

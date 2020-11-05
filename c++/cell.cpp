@@ -41,15 +41,26 @@ void cell::get_predecessor(int array[]){
 	array = predecessor;
 }
 
-double cell::get_heuristics(int target_coordinates[]){
-	return std::abs(coordinates[0] - target_coordinates[0]) + 
-		   std::abs(coordinates[1] - target_coordinates[1]);
+int cell::get_pre_i(){
+	return predecessor[0];
+}
+	
+int cell::get_pre_j(){
+	return predecessor[1];
+}
+
+double cell::get_heuristics(int target_i, int target_j){
+	return std::abs(coordinates[0] - target_i) + 
+		   std::abs(coordinates[1] - target_j);
 }
 
 double cell::get_distance(){
 	return distance;
 }
 
+void cell::set_distance(double dist){
+	distance = dist;
+}
 
 void cell::set_predecessor(int i, int j){
 	predecessor[0] = i;

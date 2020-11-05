@@ -112,16 +112,20 @@ void Frame::draw_grid(Grid &grid){
 	
 	for(int i = 0; i < grid_height; i++){
 		for(int j = 0; j < grid_width; j++){
+			if(grid.get(i, j) == 0){
+				draw_cell(i, j, 255,255,255,0);
+			}
 			if(grid.get(i, j) == 1){
 				draw_cell(i, j, 0,0,0,0);
 			}
-		}
-	}
-	
-	for(int i = 0; i < grid_height; i++){
-		for(int j = 0; j < grid_width; j++){
-			if(grid.get(i, j) == 0){
-				draw_cell(i, j, 255,255,255,0);
+			if(grid.get(i, j) == 2){
+				draw_cell(i, j, 0,255,0,0);
+			}
+			if(grid.get(i, j) == 3){
+				draw_cell(i, j, 255,0,0,0);
+			}
+			if(grid.get(i, j) == 4){
+				draw_cell(i, j, 0,0,255,0);
 			}
 		}
 	}

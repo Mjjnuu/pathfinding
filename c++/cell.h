@@ -7,7 +7,7 @@ class cell{
 private:
 	int coordinates[2];
 	
-	int predecessor[2];
+	int predecessor[2] = {-1, -1};
 	
 	double distance;
 
@@ -24,7 +24,10 @@ public:
 	void get_coordinates(int array[]);
 	void get_predecessor(int array[]);
 	
-	double get_heuristics(int target_coordinates[]);
+	int get_pre_i();
+	int get_pre_j();
+	
+	double get_heuristics(int target_i, int target_j);
 	
 	double get_distance();
 	
@@ -38,7 +41,12 @@ public:
 	bool operator == (const cell& target);
 	
 	void print(){
-		std::cout << '[' << coordinates[0] << " , " << coordinates[1] << "] , " << distance << std::endl;
+		std::cout << '[' << coordinates[0] << " , " << coordinates[1] << "] , " << distance;
+	}
+	
+	friend std::ostream& operator<<(std::ostream& os, const cell& c){
+		os << '[' << c.coordinates[0] << ' ' << c.coordinates[1] << ' ' << c.distance << ']';
+		return os;
 	}
 
 };
