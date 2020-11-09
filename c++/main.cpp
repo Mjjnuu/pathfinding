@@ -7,6 +7,7 @@
 #include "frame.h"
 #include "cell.h"
 #include "heap.cpp"
+#include "maze.h"
 
 #include <cmath>
 
@@ -73,15 +74,19 @@ int main(int argc, char *argv[]){
 	srand(time(NULL));
 	
 	int width = 180;
-	int height = 128;
+	int height = 100;
 	
 	Grid gr(width, height);
-	gr.randomize(30);
+	//gr.randomize(30);
+	//Frame frame(1900, 1000, gr);
+	generate_maze(gr);//, frame);
 		
 	auto start = std::chrono::high_resolution_clock::now();
 	
-	int start_coordinates[2] = {10, 10};
-	int target_coordinates[2] = {height - 10, width - 10};
+	int start_coordinates[2] = {0, 1};
+	int target_coordinates[2] = {height - 1, width - 3};
+	
+	gr.set_cell(height-2, width-3, 0);
 	
 	cell start_cell = cell(start_coordinates[0], start_coordinates[1]);
 	
@@ -96,7 +101,7 @@ int main(int argc, char *argv[]){
 	
 	std::vector<cell> checked_cells;
 	
-	Frame frame(1440, 1024, gr);
+	Frame frame(1900, 1000, gr);
 	gr.set_cell(target_coordinates[0], target_coordinates[1], 4);
 	
 	frame.draw_grid(gr);
